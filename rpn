@@ -33,23 +33,18 @@ def op_sub(stack):
 def op_num(stack, num):
 	stack.append(num)
 
-#operations
-ops = {
-	'^': op_pow,
-	'*': op_mul,
-	'/': op_div,
-	'+': op_add,
-	'-': op_sub,
-}
 
-
-#Inputs in expression and returns list of tokens
-def get_input(inp=None):
-	tokens = inp.strip().split()
-	return tokens
-
-
-def rpn_calc(tokens):
+def rpn_calc(expr):
+	#operations
+	ops = {
+		'^': op_pow,
+		'*': op_mul,
+		'/': op_div,
+		'+': op_add,
+		'-': op_sub,
+	}
+	#tokens
+	tokens = expr.strip().split()
 	stack = []
 	printed_stack = ['TOKEN,STACK'.split(',')]
 	for token in tokens:
@@ -61,12 +56,11 @@ def rpn_calc(tokens):
 			#push number into stack
 			op_num(stack, eval(token))
 			printed_stack.append((token, ' '.join(str(s) for s in stack)))
-	print '1st element is token, 2nd is stack %r' % printed_stack[1:]
-	return stack
+	return stack[0]
 
 
 if __name__ == '__main__':
 	rpn = '5 8 3 + *'
-	print( 'expression: %r' % rpn )
-	rp = rpn_calc(get_input(rpn))
-	print 'answer: %r' % rp[0]
+	print 'expression: %r' % rpn
+	rp = rpn_calc(rpn)
+	print 'result: %r' % rp
