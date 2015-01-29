@@ -61,7 +61,7 @@ def rpn_calc(tokens):
 			#push number into stack
 			op_num(stack, eval(token))
 			printed_stack.append((token, ' '.join(str(s) for s in stack)))
-	print ('1st element is token, 2nd is stack %r' % printed_stack[1:])
+	print '1st element is token, 2nd is stack %r' % printed_stack[1:]
 	return stack
 
 
@@ -69,4 +69,4 @@ if __name__ == '__main__':
 	rpn = '5 8 3 + *'
 	print( 'expression: %r' % rpn )
 	rp = rpn_calc(get_input(rpn))
-	print ('answer: %r' % rp[0])
+	print 'answer: %r' % rp[0]
